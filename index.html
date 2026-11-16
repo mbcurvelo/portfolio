@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mariana Curvelo – Portfólio FATEC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F6F9; --ink:#16233B; --muted:#55627A; --line:#D5DDE8;
+  --teal:#0E7C7B; --sun:#F4C95D; --card:#FFFFFF;
+  --head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0F1726; --ink:#E9EEF6; --muted:#9AA8C0; --line:#26344D; --teal:#4FD1C5; --card:#16213A;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+nav{display:flex;gap:24px;justify-content:flex-end;padding:20px 0;font-weight:500}
+nav a{text-decoration:none;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--teal)}
+
+.hero{padding:56px 0 72px}
+.hero h1{font:800 clamp(3rem,10vw,7rem)/.95 var(--head);letter-spacing:-.03em;margin:0 0 28px}
+.hero h1 span{display:block;background:linear-gradient(transparent 62%,var(--sun) 62% 92%,transparent 92%);width:fit-content}
+.hero p{max-width:34em;font-size:1.2rem;color:var(--muted);margin:0}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font:700 clamp(1.8rem,4vw,2.6rem)/1.1 var(--head);letter-spacing:-.02em;margin:0 0 12px}
+.lead{max-width:38em;color:var(--muted);margin:0 0 32px}
+.story{max-width:38em;margin:0 0 32px}
+.story p{margin:0 0 1em}
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:0 0 28px;padding:0;list-style:none}
+.gallery figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--line)}
+.gallery figcaption{padding:8px 12px;font-size:.9rem;color:var(--muted)}
+.gallery.phones{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.gallery.phones img{aspect-ratio:9/16}
+
+.brand{display:flex;gap:20px;align-items:center;margin-bottom:24px}
+.brand img{width:96px;height:96px;object-fit:contain;background:var(--card);border:1px solid var(--line);border-radius:50%;padding:8px}
+
+h3{font:700 1.15rem var(--head);margin:28px 0 10px}
+.docs{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.docs a{display:flex;justify-content:space-between;gap:16px;padding:12px 4px;border-bottom:1px solid var(--line);text-decoration:none}
+.docs a:hover{background:var(--card)}
+.docs small{color:var(--muted)}
+
+.about{display:grid;gap:24px;grid-template-columns:1fr}
+.skills{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.skills li{border:1px solid var(--line);border-radius:99px;padding:4px 14px;background:var(--card);font-size:.95rem}
+
+.contact a{display:inline-block;font:700 1.3rem var(--head);margin:4px 20px 4px 0}
+footer{padding:32px 0 48px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media(min-width:760px){.about{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Principal">
+    <a href="#sobre">Sobre</a>
+    <a href="#semestre1">1º semestre</a>
+    <a href="#semestre2">2º semestre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <header class="hero">
+    <h1>Mariana <span>Curvelo</span></h1>
+    <p>Estudante de Ciência de Dados para Negócios na FATEC Votorantim desde 2023. Aqui estão os projetos integradores que desenvolvi ao longo do curso.</p>
+  </header>
+
+  <section id="sobre">
+    <h2>Sobre mim</h2>
+    <div class="about">
+      <!-- EDITE: acrescente algo pessoal (o que você gosta, o que quer fazer depois do curso) -->
+      <div class="story">
+        <p>Oi, eu sou a Mariana. Em agosto de 2023 comecei Ciência de Dados para Negócios na FATEC Votorantim, um curso que junta matemática, tecnologia e administração, sem saber direito o que esperar.</p>
+        <p>Nesses semestres, aprendi que, antes de falar de dados, é preciso entender o negócio e as pessoas que vão usar a solução. Aprendi também que os planos mudam no meio do caminho, e que mudar de direção costuma fazer parte do processo. Este portfólio conta essa trajetória, semestre a semestre.</p>
+      </div>
+      <div>
+        <h3 style="margin-top:0">Habilidades</h3>
+        <!-- EDITE: troque pelas suas habilidades -->
+        <ul class="skills">
+          <li>Design Thinking</li>
+          <li>Pesquisa e análise de dados</li>
+          <li>Plano de negócios</li>
+          <li>Prototipação de apps</li>
+          <li>Marketing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="semestre1">
+    <h2>1º semestre: InnovaData Soluções Tecnológicas</h2>
+    <div class="story">
+      <p>No Projeto Integrador I, criamos do zero a InnovaData Soluções Tecnológicas, uma empresa fictícia que ajuda pequenos e médios negócios a entrarem no comércio eletrônico. Em um grupo de seis estudantes, trabalhamos na identidade visual, na missão, visão e valores, na estrutura organizacional, na análise de mercado, na matriz SWOT e no mapeamento de processos.</p>
+      <p>A ideia inicial era estudar a Livraria Leitura, mas mudamos de direção no meio do caminho. O projeto me mostrou que, antes de pensar em dados e tecnologia, é preciso entender o negócio e as necessidades de quem vai usar a solução.</p>
+      <!-- EDITE: quando tiver o link do documento completo, adicione aqui -->
+    </div>
+    <ul class="gallery">
+      <li><figure><img loading="lazy" src="1.%20Semestre/images/Organograma.jpg" alt="Organograma do projeto" onerror="this.closest('li').hidden=true"><figcaption>Organograma</figcaption></figure></li>
+      <li><figure><img loading="lazy" src="1.%20Semestre/images/quantitativos.jpg" alt="Resultados da pesquisa quantitativa" onerror="this.closest('li').hidden=true"><figcaption>Dados quantitativos</figcaption></figure></li>
+      <li><figure><img loading="lazy" src="1.%20Semestre/images/valores.jpg" alt="Valores do negócio" onerror="this.closest('li').hidden=true"><figcaption>Valores</figcaption></figure></li>
+      <li><figure><img loading="lazy" src="1.%20Semestre/images/ambiente1.jpg" alt="Ambiente do negócio" onerror="this.closest('li').hidden=true"><figcaption>Ambiente</figcaption></figure></li>
+      <li><figure><img loading="lazy" src="1.%20Semestre/images/engajamento.jpeg" alt="Engajamento" onerror="this.closest('li').hidden=true"><figcaption>Engajamento</figcaption></figure></li>
+      <li><figure><img loading="lazy" src="1.%20Semestre/images/eventos.jpeg" alt="Eventos" onerror="this.closest('li').hidden=true"><figcaption>Eventos</figcaption></figure></li>
+    </ul>
+    <a href="https://github.com/mbcurvelo/portfolio/tree/main/1.%20Semestre">Ver todos os arquivos do 1º semestre no GitHub</a>
+  </section>
+
+  <section id="semestre2">
+    <h2>2º semestre: Animalux</h2>
+    <div class="brand">
+      <img src="2.%20Semestre/Animalux/LogoFinal.png" alt="Logo da Animalux" onerror="this.hidden=true">
+      <p class="lead" style="margin:0">Projeto voltado ao mercado pet, com Design Thinking, personas, modelo de negócio e protótipo de aplicativo.</p>
+    </div>
+
+    <h3>Telas do aplicativo</h3>
+    <ul class="gallery phones">
+      <li><figure><img loading="lazy" src="2.%20Semestre/Animalux/APP/1.jpg" alt="Tela 1 do aplicativo" onerror="this.closest('li').hidden=true"></figure></li>
+      <li><figure><img loading="lazy" src="2.%20Semestre/Animalux/APP/2.jpg" alt="Tela 2 do aplicativo" onerror="this.closest('li').hidden=true"></figure></li>
+      <li><figure><img loading="lazy" src="2.%20Semestre/Animalux/APP/3.jpg" alt="Tela 3 do aplicativo" onerror="this.closest('li').hidden=true"></figure></li>
+      <li><figure><img loading="lazy" src="2.%20Semestre/Animalux/APP/4.jpg" alt="Tela 4 do aplicativo" onerror="this.closest('li').hidden=true"></figure></li>
+      <li><figure><img loading="lazy" src="2.%20Semestre/Animalux/APP/5.jpg" alt="Tela 5 do aplicativo" onerror="this.closest('li').hidden=true"></figure></li>
+      <li><figure><img loading="lazy" src="2.%20Semestre/Animalux/APP/6.jpg" alt="Tela 6 do aplicativo" onerror="this.closest('li').hidden=true"></figure></li>
+    </ul>
+
+    <h3>Documentos</h3>
+    <ul class="docs">
+      <li><a href="2.%20Semestre/ANIMALUX_%20PROJETO%20INTEGRADOR%202.pdf">Projeto Integrador II <small>PDF</small></a></li>
+      <li><a href="2.%20Semestre/ANIMALUX%20-%20Design%20Thinking.pdf">Design Thinking <small>PDF</small></a></li>
+      <li><a href="2.%20Semestre/ANIMALUX%20.pptx">Apresentação <small>PowerPoint</small></a></li>
+      <li><a href="2.%20Semestre/BMC.png">Business Model Canvas <small>Imagem</small></a></li>
+      <li><a href="2.%20Semestre/Proposta%20de%20valor%20.jpg">Proposta de valor <small>Imagem</small></a></li>
+      <li><a href="2.%20Semestre/Mix%20Marketing.png">Mix de marketing <small>Imagem</small></a></li>
+    </ul>
+    <!-- EDITE: para os vídeos, suba no YouTube e adicione um link aqui -->
+  </section>
+
+  <section id="contato" class="contact">
+    <h2>Contato</h2>
+    <p class="lead">Quer conversar sobre os projetos? Fale comigo.</p>
+    <a href="mailto:maribcurvelo@gmail.com">maribcurvelo@gmail.com</a>
+    <a href="https://github.com/mbcurvelo">GitHub</a>
+    <!-- EDITE: adicione seu LinkedIn -->
+  </section>
+
+  <footer>© 2026 Mariana Curvelo. Portfólio dos projetos integradores da FATEC.</footer>
+</div>
+</body>
+</html>
