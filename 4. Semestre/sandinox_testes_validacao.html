@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandinox — Testes e Validações</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #ffffff;
+      --color-bg-secondary: #f5f5f3;
+      --color-bg-success: #eaf3de;
+      --color-bg-warning: #faeeda;
+      --color-bg-info: #e6f1fb;
+      --color-text-primary: #1a1a18;
+      --color-text-secondary: #5f5e5a;
+      --color-text-success: #3b6d11;
+      --color-text-warning: #854f0b;
+      --color-text-info: #185fa5;
+      --color-border: rgba(0,0,0,0.12);
+      --color-border-medium: rgba(0,0,0,0.22);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #1e1e1c;
+        --color-bg-secondary: #2a2a28;
+        --color-bg-success: #173404;
+        --color-bg-warning: #412402;
+        --color-bg-info: #042c53;
+        --color-text-primary: #e8e6de;
+        --color-text-secondary: #9c9a92;
+        --color-text-success: #c0dd97;
+        --color-text-warning: #fac775;
+        --color-text-info: #b5d4f4;
+        --color-border: rgba(255,255,255,0.1);
+        --color-border-medium: rgba(255,255,255,0.2);
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      padding: 32px 16px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--color-bg);
+      border-radius: var(--radius-lg);
+      border: 0.5px solid var(--color-border);
+      padding: 28px 28px 32px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header-eyebrow {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: 0.5px solid var(--color-border-medium);
+      border-radius: var(--radius-md);
+      padding: 7px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn i { font-size: 15px; }
+
+    .tab-btn.active {
+      background: var(--color-bg-info);
+      color: var(--color-text-info);
+      border-color: var(--color-text-info);
+      font-weight: 500;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: var(--color-bg-secondary);
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 99px;
+      font-weight: 500;
+    }
+    .badge-ok  { background: var(--color-bg-success); color: var(--color-text-success); }
+    .badge-warn { background: var(--color-bg-warning); color: var(--color-text-warning); }
+    .badge-info { background: var(--color-bg-info); color: var(--color-text-info); }
+
+    /* Stat grid */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .stat-val {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* Test rows */
+    .test-list {
+      background: var(--color-bg);
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 4px 16px;
+    }
+
+    .test-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 0.5px solid var(--color-border);
+    }
+
+    .test-row:last-child { border-bottom: none; }
+
+    .test-icon {
+      font-size: 18px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .test-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .test-desc {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* User cards */
+    .user-card {
+      background: var(--color-bg);
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+
+    .user-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .avatar-info { background: var(--color-bg-info); color: var(--color-text-info); }
+    .avatar-warn { background: var(--color-bg-warning); color: var(--color-text-warning); }
+    .avatar-ok   { background: var(--color-bg-success); color: var(--color-text-success); }
+
+    .user-name { font-size: 14px; font-weight: 500; }
+    .user-role { font-size: 12px; color: var(--color-text-secondary); margin-top: 1px; }
+
+    .ml-auto { margin-left: auto; }
+
+    .quote {
+      border-left: 2px solid var(--color-text-info);
+      padding: 8px 14px;
+      margin: 10px 0;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .rating-label {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--color-border);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .rating-val {
+      font-size: 13px;
+      font-weight: 500;
+      min-width: 34px;
+      text-align: right;
+    }
+
+    /* Suggestions box */
+    .suggestions-box {
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-top: 4px;
+    }
+
+    .suggestions-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .suggestions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    /* Coverage bars */
+    .coverage-card {
+      background: var(--color-bg);
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .coverage-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .coverage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .coverage-row-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    /* Validation success box */
+    .success-box {
+      background: var(--color-bg-success);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--color-text-success);
+      line-height: 1.55;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .success-box i { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+    @media (max-width: 480px) {
+      .container { padding: 20px 16px 24px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .stat-grid .stat-card:last-child { grid-column: span 2; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="header-eyebrow">Seção 7 — Testes e validações</div>
+    <div class="header-title">Sistema Sandinox</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('funcional', this)">
+      <i class="ti ti-code"></i> Testes funcionais
+    </button>
+    <button class="tab-btn" onclick="showTab('usuarios', this)">
+      <i class="ti ti-users"></i> Testes com usuários
+    </button>
+    <button class="tab-btn" onclick="showTab('resultado', this)">
+      <i class="ti ti-chart-bar"></i> Resultado geral
+    </button>
+  </div>
+
+  <!-- PAINEL 1: Testes funcionais -->
+  <div id="tab-funcional" class="panel active">
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--color-text-success);">5/5</div>
+        <div class="stat-lbl">Execuções do pipeline sem erro</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">100%</div>
+        <div class="stat-lbl">Endpoints da API cobertos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--color-text-warning);">3</div>
+        <div class="stat-lbl">Bugs encontrados e corrigidos</div>
+      </div>
+    </div>
+
+    <div class="test-list">
+
+      <div class="test-row">
+        <div class="test-icon"><i class="ti ti-checkbox" style="color: var(--color-text-success);"></i></div>
+        <div>
+          <div class="test-label">Testes unitários — módulos críticos <span class="badge badge-ok">Aprovado</span></div>
+          <div class="test-desc">Funções de cálculo de materiais, validação de importações e processamento de pedidos foram testadas isoladamente. Ferramenta: testes manuais com assertivas no terminal Python.</div>
+        </div>
+      </div>
+
+      <div class="test-row">
+        <div class="test-icon"><i class="ti ti-checkbox" style="color: var(--color-text-success);"></i></div>
+        <div>
+          <div class="test-label">Testes de integração — pipeline completo <span class="badge badge-ok">Aprovado</span></div>
+          <div class="test-desc">Fluxo completo testado 5 vezes: entrada de dados → FastAPI → MongoDB/PostgreSQL → retorno na interface HTML. Todas as execuções finalizaram sem erros críticos.</div>
+        </div>
+      </div>
+
+      <div class="test-row">
+        <div class="test-icon"><i class="ti ti-alert-triangle" style="color: var(--color-text-warning);"></i></div>
+        <div>
+          <div class="test-label">Bug #1 — Caracteres especiais na importação <span class="badge badge-warn">Corrigido</span></div>
+          <div class="test-desc">O script de importação falhava ao encontrar caracteres como "ç", "ã" e "é" em nomes de fornecedores. Solução: adicionada etapa de normalização UTF-8 antes do processamento.</div>
+        </div>
+      </div>
+
+      <div class="test-row">
+        <div class="test-icon"><i class="ti ti-alert-triangle" style="color: var(--color-text-warning);"></i></div>
+        <div>
+          <div class="test-label">Bug #2 — Timeout em consultas com histórico extenso <span class="badge badge-warn">Corrigido</span></div>
+          <div class="test-desc">Consultas com mais de 3 anos de registros causavam lentidão na interface. Solução: filtro padrão de 12 meses com opção de expansão, reduzindo o tempo de resposta em ~60%.</div>
+        </div>
+      </div>
+
+      <div class="test-row">
+        <div class="test-icon"><i class="ti ti-alert-triangle" style="color: var(--color-text-warning);"></i></div>
+        <div>
+          <div class="test-label">Bug #3 — Conflito entre filtros simultâneos <span class="badge badge-warn">Corrigido</span></div>
+          <div class="test-desc">Combinação de filtro de status + filtro de fornecedor retornava conjunto vazio indevidamente. Ajuste nas queries do endpoint FastAPI resolveu a inconsistência.</div>
+        </div>
+      </div>
+
+      <div class="test-row">
+        <div class="test-icon"><i class="ti ti-checkbox" style="color: var(--color-text-success);"></i></div>
+        <div>
+          <div class="test-label">Testes de desempenho <span class="badge badge-ok">Aprovado</span></div>
+          <div class="test-desc">Tempo médio de carregamento medido em 1,4s com base de ~8.000 registros. Integração com Oracle e Siscomex validada com respostas abaixo de 3s em todos os cenários.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PAINEL 2: Testes com usuários -->
+  <div id="tab-usuarios" class="panel">
+
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 16px;">Sessão de validação realizada com 4 representantes da empresa parceira.</p>
+
+    <div class="user-card">
+      <div class="user-header">
+        <div class="avatar avatar-info">GE</div>
+        <div>
+          <div class="user-name">Gerente de operações</div>
+          <div class="user-role">Sponsor do projeto na empresa</div>
+        </div>
+        <span class="badge badge-ok ml-auto">Validado</span>
+      </div>
+      <div class="quote">"Os indicadores apresentados correspondem exatamente ao que precisamos para os comitês mensais. A economia de tempo em relação ao processo manual é visível."</div>
+      <div class="rating-label">Nota de satisfação geral</div>
+      <div class="rating-row">
+        <div class="progress-bar"><div class="progress-fill" style="width: 90%; background: var(--color-text-success);"></div></div>
+        <span class="rating-val">9/10</span>
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="user-header">
+        <div class="avatar avatar-warn">AN</div>
+        <div>
+          <div class="user-name">Analista de materiais</div>
+          <div class="user-role">Usuária diária do módulo de materiais</div>
+        </div>
+        <span class="badge badge-ok ml-auto">Validado</span>
+      </div>
+      <div class="quote">"Consigo visualizar o status dos pedidos sem precisar cruzar planilhas. Só senti falta de uma legenda nos ícones de status — não sabia o que cada cor significava de início."</div>
+      <div class="rating-label">Nota de satisfação geral</div>
+      <div class="rating-row">
+        <div class="progress-bar"><div class="progress-fill" style="width: 80%; background: var(--color-text-success);"></div></div>
+        <span class="rating-val">8/10</span>
+      </div>
+    </div>
+
+    <div class="user-card">
+      <div class="user-header">
+        <div class="avatar avatar-ok">AN</div>
+        <div>
+          <div class="user-name">Analista de importação</div>
+          <div class="user-role">Usuário do módulo de importação Siscomex</div>
+        </div>
+        <span class="badge badge-ok ml-auto">Validado</span>
+      </div>
+      <div class="quote">"O acesso às certificações e especificações em uma única tela agiliza bastante o processo. Antes precisávamos entrar em três sistemas diferentes."</div>
+      <div class="rating-label">Nota de satisfação geral</div>
+      <div class="rating-row">
+        <div class="progress-bar"><div class="progress-fill" style="width: 90%; background: var(--color-text-success);"></div></div>
+        <span class="rating-val">9/10</span>
+      </div>
+    </div>
+
+    <div class="suggestions-box">
+      <div class="suggestions-title"><i class="ti ti-bulb" style="font-size:16px;"></i> Melhorias sugeridas (registradas para versões futuras)</div>
+      <div class="suggestions-list">
+        <div>→ Adicionar <em>tooltips</em> explicativos nos ícones e indicadores de status</div>
+        <div>→ Exportação de relatórios em PDF direto pela interface</div>
+        <div>→ Notificação por e-mail ao concluir etapas críticas de importação</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAINEL 3: Resultado geral -->
+  <div id="tab-resultado" class="panel">
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--color-text-success);">8,7</div>
+        <div class="stat-lbl">Nota média de satisfação dos usuários</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">0</div>
+        <div class="stat-lbl">Erros críticos após ajustes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color: var(--color-text-info);">4/4</div>
+        <div class="stat-lbl">Usuários aprovaram a solução</div>
+      </div>
+    </div>
+
+    <div class="coverage-card">
+      <div class="coverage-title">Cobertura por módulo</div>
+      <div class="coverage-list">
+
+        <div>
+          <div class="coverage-row-label">
+            <span style="font-size:13px;">Materiais e cadastros</span>
+            <span style="font-size:13px; color: var(--color-text-success);">100%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; background: var(--color-text-success);"></div></div>
+        </div>
+
+        <div>
+          <div class="coverage-row-label">
+            <span style="font-size:13px;">Importação (Siscomex)</span>
+            <span style="font-size:13px; color: var(--color-text-success);">100%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%; background: var(--color-text-success);"></div></div>
+        </div>
+
+        <div>
+          <div class="coverage-row-label">
+            <span style="font-size:13px;">Integração ERP / Oracle</span>
+            <span style="font-size:13px; color: var(--color-text-success);">90%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:90%; background: var(--color-text-success);"></div></div>
+        </div>
+
+        <div>
+          <div class="coverage-row-label">
+            <span style="font-size:13px;">Dashboard de indicadores</span>
+            <span style="font-size:13px; color: var(--color-text-warning);">80%</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:80%; background: var(--color-text-warning);"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="success-box">
+      <i class="ti ti-circle-check"></i>
+      <span><strong>Validação formal:</strong> A empresa parceira confirmou, em reunião de entrega, que o sistema atende aos requisitos definidos no escopo do projeto. O gerente de operações assinou o Termo de Aceite (Anexo A), atestando satisfação com as funcionalidades entregues e aprovando a implementação em ambiente de produção.</span>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

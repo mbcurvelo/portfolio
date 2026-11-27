@@ -1,0 +1,119 @@
+<div style="padding: 1rem 0;">
+
+  <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+    <div style="flex:1; background: #E1F5EE; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #0F6E56; margin: 0 0 4px;">Total de embarques (2022–2024)</p>
+      <p style="font-size: 22px; font-weight: 500; margin: 0; color: #04342C;">108</p>
+    </div>
+    <div style="flex:1; background: #FAEEDA; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #854F0B; margin: 0 0 4px;">Mês de maior volume</p>
+      <p style="font-size: 22px; font-weight: 500; margin: 0; color: #412402;">Março</p>
+    </div>
+    <div style="flex:1; background: #FCEBEB; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #A32D2D; margin: 0 0 4px;">Meses críticos (baixo volume)</p>
+      <p style="font-size: 22px; font-weight: 500; margin: 0; color: #501313;">Jul · Dez</p>
+    </div>
+    <div style="flex:1; background: #EEEDFE; border-radius: 8px; padding: 1rem;">
+      <p style="font-size: 13px; color: #534AB7; margin: 0 0 4px;">Média mensal</p>
+      <p style="font-size: 22px; font-weight: 500; margin: 0; color: #26215C;">3 embarques</p>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 16px; margin-bottom: 8px; font-size: 12px; color: #5F5E5A;">
+    <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#7F77DD;"></span>2022</span>
+    <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;"></span>2023</span>
+    <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;"></span>2024</span>
+    <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px;height:2px;border-top:2px dashed #BA7517;display:inline-block;"></span>Alerta de antecipação</span>
+  </div>
+
+  <div style="position: relative; width: 100%; height: 300px;">
+    <canvas id="serieChart" role="img" aria-label="Série temporal do volume mensal de embarques da Sandinox entre 2022 e 2024, evidenciando sazonalidade com quedas em julho e dezembro e picos em março e setembro.">Volume mensal de embarques por ano: tendência sazonal com queda em julho e dezembro e pico em março.</canvas>
+  </div>
+
+  <p style="font-size: 11px; color: #888780; text-align: center; margin-top: 10px;">
+    Figura 6 — Série temporal do volume mensal de embarques da Sandinox (2022–2024). Elaboração própria a partir dos dados fornecidos pela Sandinox.
+  </p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const labels = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+new Chart(document.getElementById('serieChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: '2022',
+        data: [2, 3, 5, 4, 3, 4, 1, 3, 4, 3, 2, 1],
+        borderColor: '#7F77DD',
+        backgroundColor: 'rgba(127,119,221,0.08)',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#7F77DD',
+        tension: 0.4,
+        fill: false,
+        borderDash: []
+      },
+      {
+        label: '2023',
+        data: [3, 3, 6, 4, 4, 3, 2, 4, 5, 3, 3, 1],
+        borderColor: '#1D9E75',
+        backgroundColor: 'rgba(29,158,117,0.08)',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#1D9E75',
+        tension: 0.4,
+        fill: false,
+      },
+      {
+        label: '2024',
+        data: [3, 4, 6, 5, 4, 3, 1, 4, 5, 4, 3, 1],
+        borderColor: '#D85A30',
+        backgroundColor: 'rgba(216,90,48,0.08)',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#D85A30',
+        tension: 0.4,
+        fill: false,
+      },
+      {
+        label: 'Alerta de antecipação',
+        data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        borderColor: '#BA7517',
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        tension: 0,
+        fill: false,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + ' embarques'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(136,135,128,0.12)' },
+        ticks: { font: { size: 11 }, color: '#888780', autoSkip: false, maxRotation: 0 },
+        title: { display: true, text: 'Mês', font: { size: 12 }, color: '#5F5E5A' }
+      },
+      y: {
+        min: 0,
+        max: 8,
+        grid: { color: 'rgba(136,135,128,0.12)' },
+        ticks: { font: { size: 11 }, color: '#888780', stepSize: 1 },
+        title: { display: true, text: 'Nº de embarques', font: { size: 12 }, color: '#5F5E5A' }
+      }
+    }
+  }
+});
+</script>

@@ -1,0 +1,153 @@
+<div style="padding: 1rem 0;">
+
+<div style="display: flex; gap: 12px; margin-bottom: 16px;">
+  <div style="flex:1; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">Média</p>
+    <p style="font-size: 22px; font-weight: 500; margin: 0; color: var(--color-text-primary);">R$ 38.400</p>
+  </div>
+  <div style="flex:1; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">Mediana</p>
+    <p style="font-size: 22px; font-weight: 500; margin: 0; color: var(--color-text-primary);">R$ 27.200</p>
+  </div>
+  <div style="flex:1; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">Outliers</p>
+    <p style="font-size: 22px; font-weight: 500; margin: 0; color: var(--color-text-primary);">38 processos</p>
+  </div>
+  <div style="flex:1; background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem;">
+    <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px;">Total de processos</p>
+    <p style="font-size: 22px; font-weight: 500; margin: 0; color: var(--color-text-primary);">781</p>
+  </div>
+</div>
+
+<div style="display: flex; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--color-text-secondary);">
+  <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#7F77DD;"></span>Processos regulares</span>
+  <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;"></span>Outliers (acima de R$ 120k)</span>
+  <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;display:inline-block;"></span>Média</span>
+  <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px;height:2px;background:#888780;display:inline-block;border-top: 2px dashed #888780;"></span>Mediana</span>
+</div>
+
+<div style="position: relative; width: 100%; height: 340px;">
+  <canvas id="histChart" role="img" aria-label="Histograma de distribuição dos custos por processo de importação da Sandinox, mostrando assimetria positiva com concentração entre R$10k e R$60k e outliers acima de R$120k.">Distribuição dos custos: maioria dos processos concentrada entre R$10.000 e R$60.000, com cauda longa e outliers acima de R$120.000.</canvas>
+</div>
+
+<p style="font-size: 12px; color: var(--color-text-tertiary); margin-top: 8px; text-align: center;">
+  Figura 1 — Distribuição dos custos por processo de importação (n=781). Elaboração própria a partir dos dados fornecidos pela Sandinox.
+</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const labels = [
+  'R$0–10k','R$10–20k','R$20–30k','R$30–40k','R$40–50k',
+  'R$50–60k','R$60–70k','R$70–80k','R$80–90k','R$90–100k',
+  'R$100–110k','R$110–120k','R$120k+'
+];
+const regular = [18, 148, 187, 162, 115, 72, 41, 0, 0, 0, 0, 0, 0];
+const outliers = [0, 0, 0, 0, 0, 0, 0, 12, 9, 7, 5, 3, 2];
+
+new Chart(document.getElementById('histChart'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Processos regulares',
+        data: regular,
+        backgroundColor: '#AFA9EC',
+        borderColor: '#7F77DD',
+        borderWidth: 0.5,
+        borderRadius: 3,
+      },
+      {
+        label: 'Outliers',
+        data: outliers,
+        backgroundColor: '#F0997B',
+        borderColor: '#D85A30',
+        borderWidth: 0.5,
+        borderRadius: 3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      annotation: {},
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + ' processos'
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        grid: { display: false },
+        ticks: {
+          font: { size: 11 },
+          color: '#888780',
+          maxRotation: 45,
+          autoSkip: false
+        },
+        title: {
+          display: true,
+          text: 'Faixa de custo por processo (R$)',
+          font: { size: 12 },
+          color: '#5F5E5A'
+        }
+      },
+      y: {
+        stacked: true,
+        grid: { color: 'rgba(136,135,128,0.15)' },
+        ticks: {
+          font: { size: 11 },
+          color: '#888780'
+        },
+        title: {
+          display: true,
+          text: 'Número de processos',
+          font: { size: 12 },
+          color: '#5F5E5A'
+        }
+      }
+    }
+  },
+  plugins: [{
+    afterDraw(chart) {
+      const ctx = chart.ctx;
+      const xAxis = chart.scales.x;
+      const yAxis = chart.scales.y;
+
+      const mediaX = xAxis.getPixelForValue(1.6);
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(mediaX, yAxis.top);
+      ctx.lineTo(mediaX, yAxis.bottom);
+      ctx.strokeStyle = '#1D9E75';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = '#1D9E75';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('Média', mediaX + 4, yAxis.top + 14);
+      ctx.restore();
+
+      const medianaX = xAxis.getPixelForValue(1.22);
+      ctx.save();
+      ctx.beginPath();
+      ctx.setLineDash([4, 4]);
+      ctx.moveTo(medianaX, yAxis.top);
+      ctx.lineTo(medianaX, yAxis.bottom);
+      ctx.strokeStyle = '#888780';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#888780';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('Mediana', medianaX + 4, yAxis.top + 28);
+      ctx.restore();
+    }
+  }]
+});
+</script>

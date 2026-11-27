@@ -1,0 +1,129 @@
+<div style="padding: 1rem 0; font-family: sans-serif;">
+
+  <div style="text-align:center; margin-bottom: 20px;">
+    <span style="font-size:15px; font-weight:600; color:#1E2761;">Ferramentas e Programas Utilizados no Projeto Sandinox</span><br>
+    <span style="font-size:11px; color:#888;">Atualizado com base no documento de Testes e Validações</span>
+  </div>
+
+  <!-- ETL e Dados -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#2E3A8C; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">🔄 ETL e Processamento de Dados</div>
+    <div style="border:1px solid #AFA9EC; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#EEEDFE;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#534AB7;">KNIME Analytics Platform</span><br><span style="font-size:12px; color:#555;">Orquestração do pipeline ETL — extração, transformação e carga dos dados</span></div>
+        <div><span style="font-weight:600; color:#534AB7;">Microsoft Excel</span><br><span style="font-size:12px; color:#555;">Fonte primária de dados brutos — 781 processos de importação</span></div>
+        <div><span style="font-weight:600; color:#534AB7;">Python</span><br><span style="font-size:12px; color:#555;">Linguagem base para scripts de automação, testes e processamento de dados</span></div>
+        <div><span style="font-weight:600; color:#534AB7;">Pandas & NumPy</span><br><span style="font-size:12px; color:#555;">Bibliotecas Python para manipulação e transformação de dados</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banco de Dados -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#1D6B4F; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">🗄️ Banco de Dados</div>
+    <div style="border:1px solid #5DCAA5; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#E1F5EE;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#0F6E56;">PostgreSQL</span><br><span style="font-size:12px; color:#555;">Banco de dados relacional principal — repositório centralizado dos processos</span></div>
+        <div><span style="font-weight:600; color:#0F6E56;">MongoDB</span><br><span style="font-size:12px; color:#555;">Banco de dados NoSQL utilizado em conjunto no pipeline de dados</span></div>
+        <div><span style="font-weight:600; color:#0F6E56;">Oracle</span><br><span style="font-size:12px; color:#555;">Integração com sistema legado da empresa — validada com respostas abaixo de 3s</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backend / API -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#7F77DD; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">⚡ Backend e API</div>
+    <div style="border:1px solid #AFA9EC; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#EEEDFE;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#534AB7;">FastAPI</span><br><span style="font-size:12px; color:#555;">Framework Python para construção dos endpoints da API REST do sistema ERP</span></div>
+        <div><span style="font-weight:600; color:#534AB7;">HTML (interface)</span><br><span style="font-size:12px; color:#555;">Frontend da interface do sistema — telas de cadastro, pedidos e dashboards</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visualização e BI -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#BA7517; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">📊 Visualização e Business Intelligence</div>
+    <div style="border:1px solid #EF9F27; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#FAEEDA;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#854F0B;">Microsoft Power BI</span><br><span style="font-size:12px; color:#555;">Dashboards analíticos com KPIs logísticos e financeiros em tempo real</span></div>
+        <div><span style="font-weight:600; color:#854F0B;">Matplotlib / Seaborn</span><br><span style="font-size:12px; color:#555;">Gráficos exploratórios — histogramas, séries temporais e análise de outliers</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERP e Integrações -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#D85A30; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">⚙️ Sistema ERP e Integrações Externas</div>
+    <div style="border:1px solid #F0997B; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#FCEBEB;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#993C1D;">Sistema ERP customizado</span><br><span style="font-size:12px; color:#555;">Desenvolvido pela equipe — pedidos, notas fiscais, estoque e importação</span></div>
+        <div><span style="font-weight:600; color:#993C1D;">Siscomex</span><br><span style="font-size:12px; color:#555;">Sistema de Comércio Exterior integrado ao módulo de importação — validado com 100% de cobertura</span></div>
+        <div><span style="font-weight:600; color:#993C1D;">NF-e (Receita Federal / SERPRO)</span><br><span style="font-size:12px; color:#555;">Padrão de emissão de Notas Fiscais Eletrônicas integrado ao módulo fiscal</span></div>
+        <div><span style="font-weight:600; color:#993C1D;">Oracle ERP (legado)</span><br><span style="font-size:12px; color:#555;">Integração com sistema legado da Sandinox — cobertura de 90% validada nos testes</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testes -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#028090; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">🧪 Testes e Qualidade</div>
+    <div style="border:1px solid #5DCABA; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#E0F4F6;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#028090;">Testes manuais com assertivas (terminal Python)</span><br><span style="font-size:12px; color:#555;">Testes unitários dos módulos críticos — cálculos, validações e pedidos</span></div>
+        <div><span style="font-weight:600; color:#028090;">Testes de integração (pipeline completo)</span><br><span style="font-size:12px; color:#555;">5 execuções completas: entrada → FastAPI → MongoDB/PostgreSQL → interface</span></div>
+        <div><span style="font-weight:600; color:#028090;">Testes de desempenho</span><br><span style="font-size:12px; color:#555;">Tempo médio de carregamento: 1,4s com ~8.000 registros</span></div>
+        <div><span style="font-weight:600; color:#028090;">Testes de usabilidade com usuários</span><br><span style="font-size:12px; color:#555;">4 representantes da Sandinox — nota média de satisfação: 8,7/10</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gestão e Colaboração -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#1E2761; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">🗂️ Gestão de Projeto e Colaboração</div>
+    <div style="border:1px solid #C8D8F8; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#EEF3FC;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#1E2761;">GitHub</span><br><span style="font-size:12px; color:#555;">Controle de versão — commits, issues e repositório organizado por módulos</span></div>
+        <div><span style="font-weight:600; color:#1E2761;">Trello</span><br><span style="font-size:12px; color:#555;">Gestão de tarefas em Kanban — A Fazer, Fazendo e Feito</span></div>
+        <div><span style="font-weight:600; color:#1E2761;">Google Colab</span><br><span style="font-size:12px; color:#555;">Ambiente colaborativo para notebooks Python e compartilhamento de código</span></div>
+        <div><span style="font-weight:600; color:#1E2761;">Google Meet / Teams</span><br><span style="font-size:12px; color:#555;">Reuniões de validação remotas com a equipe da Sandinox</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dados externos -->
+  <div style="margin-bottom: 14px;">
+    <div style="background:#555555; color:#fff; padding:6px 14px; border-radius:6px 6px 0 0; font-size:13px; font-weight:600;">🌐 Fontes de Dados Externas</div>
+    <div style="border:1px solid #AAAAAA; border-top:none; border-radius:0 0 6px 6px; padding:10px 14px; background:#F5F5F5;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div><span style="font-weight:600; color:#333;">API BACEN — SGS</span><br><span style="font-size:12px; color:#555;">Indicadores cambiais (USD/BRL) para análise de custos de importação</span></div>
+        <div><span style="font-weight:600; color:#333;">Siscomex (MDIC)</span><br><span style="font-size:12px; color:#555;">Sistema oficial de comércio exterior — certificações e especificações de importação</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resumo numérico -->
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:6px;">
+    <div style="background:#2E3A8C; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#fff;">18</div>
+      <div style="font-size:11px; color:#C8D8F8;">ferramentas identificadas</div>
+    </div>
+    <div style="background:#1D9E75; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#fff;">7</div>
+      <div style="font-size:11px; color:#E1F5EE;">categorias de uso</div>
+    </div>
+    <div style="background:#BA7517; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#fff;">5</div>
+      <div style="font-size:11px; color:#FAEEDA;">novas vs. versão anterior</div>
+    </div>
+    <div style="background:#D85A30; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#fff;">100%</div>
+      <div style="font-size:11px; color:#FCEBEB;">endpoints testados</div>
+    </div>
+  </div>
+
+  <div style="font-size:11px; color:#888; text-align:center; margin-top:12px;">
+    Fonte: Relatório Final Sandinox + Documento de Testes e Validações — PI4, 2025.
+  </div>
+
+</div>
